@@ -14,5 +14,23 @@ class VenueAdmin(admin.ModelAdmin):
         }),
     )
 
+class EventAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'description')
+        }),
+        (None, {
+            'fields': ('venue', 'organiser'),
+        }),
+        (None, {
+            'fields': ('start_time', 'end_time'),
+        }),
+    )
+
+class TalkAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Venue, VenueAdmin)
+admin.site.register(Event, EventAdmin)
+admin.site.register(Talk, TalkAdmin)
 
