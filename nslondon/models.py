@@ -19,6 +19,14 @@ class Venue(models.Model):
     def __unicode__(self):
         return self.name
 
+    @property
+    def address(self):
+        lines = (self.address_1, self.address_2, self.city, self.county, self.post_code, self.country)
+
+        lines = [line for line in lines if line]
+
+        return ', '.join(lines)
+
 
 class Event(models.Model):
     name = models.CharField(max_length=255)
@@ -30,8 +38,17 @@ class Event(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
 
+    def __unicode__(self):
+        return self.name
+
 
 class Talk(models.Model):
-    event = models.ForeignKey(Event)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+
+    event = models.ForeignKey(Event, related_name='talks')
     speaker = models.ForeignKey(User, related_name='speakers')
+
+    def __unicode__(self):
+        return self.name
 
