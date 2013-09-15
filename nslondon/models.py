@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
 from django.contrib.auth.models import User
 
 
@@ -49,6 +51,19 @@ class Talk(models.Model):
     event = models.ForeignKey(Event, related_name='talks')
     speaker = models.ForeignKey(User, related_name='speakers')
 
+    links = generic.GenericRelation('Link')
+
     def __unicode__(self):
         return self.name
 
+class Link(models.Model):
+    name = models.CharField(max_length=255)
+    url = models.URLField()
+    is_embed = models.BooleanField(default=True)
+
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
+
+    def __unicode__(self):
+        return self.url

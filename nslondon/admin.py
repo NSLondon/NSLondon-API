@@ -1,5 +1,5 @@
 from django.contrib import admin
-from nslondon.models import Venue, Event, Talk
+from nslondon.models import Venue, Event, Talk, Link
 
 class VenueAdmin(admin.ModelAdmin):
     fieldsets = (
@@ -30,7 +30,11 @@ class EventAdmin(admin.ModelAdmin):
 class TalkAdmin(admin.ModelAdmin):
     pass
 
+class LinkAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Venue, VenueAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Talk, TalkAdmin)
+admin.site.register(Link, LinkAdmin)
 
