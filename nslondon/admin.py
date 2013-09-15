@@ -12,6 +12,9 @@ class VenueAdmin(admin.ModelAdmin):
         ('Address', {
             'fields': ('address_1', 'address_2', 'city', 'county', 'post_code', 'country')
         }),
+        ('Meta', {
+            'fields': ('notes',),
+        }),
     )
 
 class EventAdmin(admin.ModelAdmin):

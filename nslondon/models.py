@@ -18,6 +18,8 @@ class Venue(models.Model):
     post_code = models.CharField(max_length=255)
     country = models.CharField(max_length=255, blank=True, null=True)
 
+    notes = models.TextField(blank=True, null=True)
+
     def __unicode__(self):
         return self.name
 
