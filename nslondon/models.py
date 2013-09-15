@@ -45,6 +45,11 @@ class Event(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('event_detail', (), { 'pk': self.pk })
+
+
 
 class Talk(models.Model):
     name = models.CharField(max_length=255)

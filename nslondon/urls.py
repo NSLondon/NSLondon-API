@@ -4,11 +4,13 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from nslondon.views import EventDetailView
+from nslondon.views import EventListView, EventDetailView
 
 
 urlpatterns = patterns('',
-    url(r'^events/(?P<pk>\d+)/$', EventDetailView.as_view()),
+    url(r'^events/$', EventListView.as_view(), name='event_list'),
+    url(r'^events/(?P<pk>\d+)/$', EventDetailView.as_view(), name='event_detail'),
+
     # Examples:
     # url(r'^$', 'nslondon.views.home', name='home'),
     # url(r'^nslondon/', include('nslondon.foo.urls')),

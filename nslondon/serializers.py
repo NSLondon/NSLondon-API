@@ -31,7 +31,8 @@ class EventSerializer(serializers.ModelSerializer):
     venue = VenueSerializer()
     talks = TalkSerializer()
     organiser = UserSerializer()
+    url = serializers.CharField(source='get_absolute_url', read_only=True)
 
     class Meta:
         model = Event
-        fields = ('id', 'name', 'description', 'organiser', 'venue', 'start_time', 'end_time', 'talks')
+        fields = ('id', 'url', 'name', 'description', 'organiser', 'venue', 'start_time', 'end_time', 'talks')
